@@ -5,12 +5,12 @@
 #
 ## 软件环境
 
-- ros noetic
-- catkin_tools 0.9.2
-- Python 3.8.10
-- opencv 4.2.0
-- eigen 3.3.7
-- pcl 1.10
+* ros noetic
+* catkin_tools 0.9.2
+* Python 3.8.10
+* opencv 4.2.0
+* eigen 3.3.7
+* pcl 1.10
 
 #
 ## 目录结构
@@ -55,30 +55,30 @@ catkin_make
 ```
 
 工具自动保存的键值对：
-- "rotation":[9] or [3,3]
-- "translation":[3]
+* "rotation":[9] or [3,3]
+* "translation":[3]
 
 如果使用`{MultiLidarCalibrator_path}/script/run.py`脚本启动：
 
 需要手动填写的键值对：
-- "channel":string
-- "target":string
-- "rotation":[9] or [3,3]
-- "translation":[3]
+* "channel":string
+* "target":string
+* "rotation":[9] or [3,3]
+* "translation":[3]
 
 工具自动保存的键值对：
-- "channel":string
-- "target":string
-- "rotation":[9] or [3,3]
-- "translation":[3]
+* "channel":string
+* "target":string
+* "rotation":[9] or [3,3]
+* "translation":[3]
 
 该工具中未使用的键值对（可删除的）：
-- "modality":string
-- "image_size":[2]
-- "intrinsic":[9] or [3,3]
-- "distortion":[4] or [5]
-- "undistort_intrinsic":[9] or [3,3]
-- "undistort_distortion":[4] or [5]
+* "modality":string
+* "image_size":[2]
+* "intrinsic":[9] or [3,3]
+* "distortion":[4] or [5]
+* "undistort_intrinsic":[9] or [3,3]
+* "undistort_distortion":[4] or [5]
 
 #
 ## 标定流程
