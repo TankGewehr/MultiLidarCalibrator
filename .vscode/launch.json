@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name":"test(gdp)启动",
+            "name":"multi_lidar_calibrator(gdb)启动",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/devel/lib/multi_lidar_calibrator/multi_lidar_calibrator",
