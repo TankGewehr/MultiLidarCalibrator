@@ -55,29 +55,23 @@ catkin_make
 ```
 
 工具自动保存的键值对：
-* "rotation":[9] or [3,3]
-* "translation":[3]
-
-如果使用`{MultiLidarCalibrator_path}/script/run.py`脚本启动：
-
-需要手动填写的键值对：
 * "channel":string
 * "target":string
-* "rotation":[9] or [3,3]
+* "rotation":[9]
 * "translation":[3]
+* "modality":string
 
-工具自动保存的键值对：
+如果使用`{MultiLidarCalibrator_path}/script/run.py`脚本启动，需要手动填写的键值对：
 * "channel":string
 * "target":string
-* "rotation":[9] or [3,3]
+* "rotation":[9]
 * "translation":[3]
 
 该工具中未使用的键值对（可删除的）：
-* "modality":string
 * "image_size":[2]
-* "intrinsic":[9] or [3,3]
+* "intrinsic":[9]
 * "distortion":[4] or [5]
-* "undistort_intrinsic":[9] or [3,3]
+* "undistort_intrinsic":[9]
 * "undistort_distortion":[4] or [5]
 
 #
@@ -99,7 +93,9 @@ catkin_make
 
 ```shell
 source {MultiLidarCalibrator_path}/devel/setup.bash
-rosrun multi_lidar_calibrator multi_lidar_calibrator _points_child_src:={传感器自身的rostopic} _points_parent_src:={平移和旋转相对的目标传感器的rostopic} _x:={x方向平移的初始值} _y:={y方向平移的初始值} _z:={z方向平移的初始值} _roll:={roll旋转的初始值} _pitch:={pitch旋转的初始值} _yaw:={yaw旋转的初始值} _extrinsic_json_path:={保存的标定参数文件路径}
+rosrun multi_lidar_calibrator multi_lidar_calibrator _points_child_src:={传感器自身的rostopic} _points_parent_src:={平移和旋转相对的目标传感器的rostopic} _x:={x方向平移的初始值} _y:={y方向平移的初始值} _z:={z方向平移的初始值} _roll:={roll旋转的初始值} _pitch:={pitch旋转的初始值} _yaw:={yaw旋转的初始值} _calibration_param_path:={保存的标定参数文件路径}
+#或者，如果多个激光雷达时间戳不匹配无法同步，可以使用异步版本进行标定
+rosrun multi_lidar_calibrator multi_lidar_calibrator_asynchronous _points_child_src:={传感器自身的rostopic} _points_parent_src:={平移和旋转相对的目标传感器的rostopic} _x:={x方向平移的初始值} _y:={y方向平移的初始值} _z:={z方向平移的初始值} _roll:={roll旋转的初始值} _pitch:={pitch旋转的初始值} _yaw:={yaw旋转的初始值} _calibration_param_path:={保存的标定参数文件路径}
 ```
 
 由于标定结果中的`"rotation"`字段是旋转矩阵，无法直观地看到标定结果的变化以及修改初始值，这里提供了一个启动脚本供参考使用：
@@ -108,9 +104,11 @@ rosrun multi_lidar_calibrator multi_lidar_calibrator _points_child_src:={传感�
 
 ```shell
 python3 {MultiLidarCalibrator_path}/script/run.py {初始值标定参数文件路径} {保存的标定参数文件路径}
+#或者，如果多个激光雷达时间戳不匹配无法同步，可以使用异步版本进行标定
+python3 {MultiLidarCalibrator_path}/script/run_asynchronous.py {初始值标定参数文件路径} {保存的标定参数文件路径}
 ```
 
-2. 查看标定结果：使用rviz将`激光雷达点云`可视化来观察标定结果
+1. 查看标定结果：使用rviz将`激光雷达点云`可视化来观察标定结果
 
 ```shell
 rviz

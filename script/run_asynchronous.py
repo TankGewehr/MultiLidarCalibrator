@@ -90,7 +90,7 @@ def main(args):
         json.dump(root,json_file,indent=4)
 
     subprocess.call("source devel/setup.bash && \
-        rosrun multi_lidar_calibrator multi_lidar_calibrator \
+        rosrun multi_lidar_calibrator multi_lidar_calibrator_asynchronous \
         _points_child_src:="+points_child_src+" \
         _points_parent_src:="+points_parent_src+" \
         _x:="+str(translation[0])+" _y:="+str(translation[1])+" _z:="+str(translation[2])+" \
