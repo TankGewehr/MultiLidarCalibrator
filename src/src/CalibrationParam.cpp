@@ -128,6 +128,27 @@ CalibrationParam::CalibrationParam()
     this->setModality("");
 }
 
+CalibrationParam::CalibrationParam(const CalibrationParam &calibration_param)
+{
+    this->setName(calibration_param.getName());
+    this->setTarget(calibration_param.getTarget());
+    this->setExtrinsic(calibration_param.getExtrinsic());
+    this->rotation = this->extrinsic(cv::Range(0, 3), cv::Range(0, 3));
+    this->translation = this->extrinsic(cv::Range(0, 3), cv::Range(3, 4));
+
+    this->setChannel(calibration_param.getChannel());
+    this->setModality(calibration_param.getModality());
+
+    if (this->modality == "camera")
+    {
+        this->setImageSize(calibration_param.getImageSize());
+        this->setIntrinsic(calibration_param.getIntrinsic());
+        this->setDistortion(calibration_param.getDistortion());
+        this->setUndistortIntrinsic(calibration_param.getUndistortIntrinsic());
+        this->setUndistortDistortion(calibration_param.getUndistortDistortion());
+    }
+}
+
 CalibrationParam::CalibrationParam(std::string calibration_param_path)
 {
     Json::Value root = this->loadJson(calibration_param_path);
@@ -299,62 +320,62 @@ void CalibrationParam::loadUndistortDistortion(std::string calibration_param_pat
     this->setUndistortDistortion(this->loadMat(root, "undistort_distortion", 0));
 }
 
-std::string CalibrationParam::getName()
+std::string CalibrationParam::getName() const
 {
     return this->name;
 }
 
-std::string CalibrationParam::getTarget()
+std::string CalibrationParam::getTarget() const
 {
     return this->target;
 }
 
-cv::Mat CalibrationParam::getExtrinsic()
+cv::Mat CalibrationParam::getExtrinsic() const
 {
     return this->extrinsic.clone();
 }
 
-cv::Mat CalibrationParam::getRotation()
+cv::Mat CalibrationParam::getRotation() const
 {
     return this->rotation.clone();
 }
 
-cv::Mat CalibrationParam::getTranslation()
+cv::Mat CalibrationParam::getTranslation() const
 {
     return this->translation.clone();
 }
 
-std::string CalibrationParam::getChannel()
+std::string CalibrationParam::getChannel() const
 {
     return this->channel;
 }
 
-std::string CalibrationParam::getModality()
+std::string CalibrationParam::getModality() const
 {
     return this->modality;
 }
 
-cv::Size CalibrationParam::getImageSize()
+cv::Size CalibrationParam::getImageSize() const
 {
     return this->image_size;
 }
 
-cv::Mat CalibrationParam::getIntrinsic()
+cv::Mat CalibrationParam::getIntrinsic() const
 {
     return this->intrinsic.clone();
 }
 
-cv::Mat CalibrationParam::getDistortion()
+cv::Mat CalibrationParam::getDistortion() const
 {
     return this->distortion.clone();
 }
 
-cv::Mat CalibrationParam::getUndistortIntrinsic()
+cv::Mat CalibrationParam::getUndistortIntrinsic() const
 {
     return this->undistort_intrinsic.clone();
 }
 
-cv::Mat CalibrationParam::getUndistortDistortion()
+cv::Mat CalibrationParam::getUndistortDistortion() const
 {
     return this->undistort_distortion.clone();
 }

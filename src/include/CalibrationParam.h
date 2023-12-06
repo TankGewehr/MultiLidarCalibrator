@@ -36,6 +36,8 @@ private:
 public:
     CalibrationParam();
 
+    CalibrationParam(const CalibrationParam &calibration_param);
+
     /**
      * @brief 读取标定参数json文件构造标定参数
      *
@@ -195,74 +197,74 @@ public:
      *
      * @return std::string 标定参数的name
      */
-    std::string getName();
+    std::string getName() const;
     /**
      * @brief 获取标定参数的target
      *
      * @return std::string 标定参数的target
      */
-    std::string getTarget();
+    std::string getTarget() const;
     /**
      * @brief 获取标定参数的extrinsic
      *
      * @return cv::Mat 标定参数的extrinsic
      */
-    cv::Mat getExtrinsic();
+    cv::Mat getExtrinsic() const;
     /**
      * @brief 获取标定参数的rotation
      *
      * @return cv::Mat 标定参数的rotation
      */
-    cv::Mat getRotation();
+    cv::Mat getRotation() const;
     /**
      * @brief 获取标定参数的translation
      *
      * @return cv::Mat 标定参数的translation
      */
-    cv::Mat getTranslation();
+    cv::Mat getTranslation() const;
 
     /**
      * @brief 获取标定参数的channel
      *
      * @return std::string 标定参数的channel
      */
-    std::string getChannel();
+    std::string getChannel() const;
     /**
      * @brief 获取标定参数的modality
      *
      * @return std::string 标定参数的modality
      */
-    std::string getModality();
+    std::string getModality() const;
     /**
      * @brief 获取标定参数的image_size
      *
      * @return cv::Size 标定参数的image_size
      */
-    cv::Size getImageSize();
+    cv::Size getImageSize() const;
     /**
      * @brief 获取标定参数的intrinsic
      *
      * @return cv::Mat 标定参数的intrinsic
      */
-    cv::Mat getIntrinsic();
+    cv::Mat getIntrinsic() const;
     /**
      * @brief 获取标定参数的distortion
      *
      * @return cv::Mat 标定参数的distortion
      */
-    cv::Mat getDistortion();
+    cv::Mat getDistortion() const;
     /**
      * @brief 获取标定参数的undistort_intrinsic
      *
      * @return cv::Mat 标定参数的undistort_intrinsic
      */
-    cv::Mat getUndistortIntrinsic();
+    cv::Mat getUndistortIntrinsic() const;
     /**
      * @brief 获取标定参数的undistort_distortion
      *
      * @return cv::Mat 标定参数的undistort_distortion
      */
-    cv::Mat getUndistortDistortion();
+    cv::Mat getUndistortDistortion() const;
 
     void save(std::string calibration_param_path);
 
